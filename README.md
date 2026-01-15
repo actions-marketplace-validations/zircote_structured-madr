@@ -4,9 +4,10 @@
 
 Structured MADR is an extension of [MADR](https://adr.github.io/madr/) (Markdown Architectural Decision Records) that adds YAML frontmatter for machine-readable metadata, comprehensive option analysis with risk assessments, and required audit sections for compliance tracking.
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Specification](https://img.shields.io/badge/spec-1.0.0-purple.svg)](SPECIFICATION.md)
+[![Validate ADRs](https://github.com/zircote/structured-madr/actions/workflows/validate-adrs.yml/badge.svg)](https://github.com/zircote/structured-madr/actions/workflows/validate-adrs.yml)
 
 ## Why Structured MADR?
 
