@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-01-15
+
 ### Added
 
 - **[GitHub Action]**: Shareable validation action for CI/CD pipelines
@@ -49,5 +51,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Risk Assessment**: Three-dimension risk model (Technical/Schedule/Ecosystem) provides comprehensive evaluation
 - **Status Values**: Limited to MADR-compatible values (proposed, accepted, deprecated, superseded)
 
-[Unreleased]: https://github.com/zircote/structured-madr/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/zircote/structured-madr/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/zircote/structured-madr/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/zircote/structured-madr/releases/tag/v1.0.0
