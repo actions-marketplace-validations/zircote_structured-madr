@@ -206,9 +206,74 @@ After implementation, add audit entries to track compliance:
 
 ## Tooling Support
 
-### Validation
+### GitHub Action
 
-Validate your ADRs against the JSON Schema:
+Add automated validation to your CI/CD pipeline:
+
+```yaml
+# .github/workflows/validate-adrs.yml
+name: Validate ADRs
+
+on:
+  push:
+    paths:
+      - 'docs/decisions/**'
+  pull_request:
+    paths:
+      - 'docs/decisions/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Structured MADR
+        uses: zircote/structured-madr@v1
+        with:
+          path: docs/decisions    # Path to your ADRs (default: docs/decisions)
+          pattern: '**/*.md'      # Glob pattern for ADR files (default: **/*.md)
+          strict: 'false'         # Fail on warnings (default: false)
+          fail-on-error: 'true'   # Fail workflow on errors (default: true)
+```
+
+#### Action Inputs
+
+| Input | Description | Default |
+|-------|-------------|---------|
+| `path` | Directory containing ADR files | `docs/decisions` |
+| `pattern` | Glob pattern for ADR files | `**/*.md` |
+| `schema` | Path to custom JSON Schema | (built-in schema) |
+| `strict` | Fail on warnings in addition to errors | `false` |
+| `fail-on-error` | Fail the workflow if validation errors are found | `true` |
+
+#### Action Outputs
+
+| Output | Description |
+|--------|-------------|
+| `valid` | Whether all ADRs passed validation |
+| `total` | Total number of ADR files checked |
+| `passed` | Number of files that passed |
+| `failed` | Number of files that failed |
+| `warnings` | Number of warnings generated |
+
+### Local Validation
+
+Validate your ADRs locally using the CLI:
+
+```bash
+# Clone and install
+git clone https://github.com/zircote/structured-madr.git
+cd structured-madr
+npm install
+
+# Validate ADRs in your project
+INPUT_PATH=/path/to/your/docs/decisions npm run validate
+```
+
+### Schema Validation
+
+Validate frontmatter against the JSON Schema:
 
 ```bash
 # Using ajv-cli

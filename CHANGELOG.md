@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **[GitHub Action]**: Shareable validation action for CI/CD pipelines
+  - Composite action with configurable inputs (`path`, `pattern`, `schema`, `strict`, `fail-on-error`)
+  - Node.js validator with JSON Schema (ajv) and body structure validation
+  - GitHub-compatible annotations for PR feedback
+  - Outputs for workflow integration (`valid`, `total`, `passed`, `failed`, `warnings`)
+- **[Project ADRs]**: Exemplar ADRs demonstrating the format (dogfooding)
+  - ADR-0001: Adopt Structured MADR Format for Project Documentation
+  - ADR-0002: Shareable GitHub Action for Structured MADR Validation
+- **[CI/CD]**: GitHub workflow to validate project and example ADRs
+- **[Documentation]**: README updated with action usage, inputs/outputs, and local validation instructions
+
+### Changed
+
+- **[Tooling]**: Added npm package.json with validation dependencies (ajv, ajv-formats, glob, yaml)
+
 ## [1.0.0] - 2026-01-15
 
 ### Added
