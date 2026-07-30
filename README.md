@@ -1,3 +1,8 @@
+<p align="center">
+  <img src=".github/social-preview.png" width="860"
+       alt="Structured MADR — machine-readable Architectural Decision Records. The decision a person writes and the metadata a parser filters on: one record, both readers, gate-checked before it merges.">
+</p>
+
 # Structured MADR
 
 **Machine-Readable Architectural Decision Records for the AI Era**
@@ -7,7 +12,7 @@ Structured MADR is an extension of [MADR](https://adr.github.io/madr/) (Markdown
 [![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Specification](https://img.shields.io/badge/spec-1.0.0-purple.svg)](SPECIFICATION.md)
-[![Validate ADRs](https://github.com/zircote/structured-madr/actions/workflows/validate-adrs.yml/badge.svg)](https://github.com/zircote/structured-madr/actions/workflows/validate-adrs.yml)
+[![CI](https://github.com/modeled-information-format/structured-madr/actions/workflows/ci.yml/badge.svg)](https://github.com/modeled-information-format/structured-madr/actions/workflows/ci.yml)
 
 ## Why Structured MADR?
 
@@ -36,7 +41,7 @@ Structured MADR addresses these gaps while remaining fully human-readable and co
 ### 1. Copy the Template
 
 ```bash
-curl -O https://raw.githubusercontent.com/zircote/structured-madr/main/templates/template.md
+curl -O https://raw.githubusercontent.com/modeled-information-format/structured-madr/main/templates/template.md
 mv template.md docs/adr/0001-your-decision.md
 ```
 
@@ -207,6 +212,21 @@ After implementation, add audit entries to track compliance:
 
 ## Tooling Support
 
+### MIF Compliance
+
+ADRs can be validated as **MIF (Modeled Information Format)** at a level you select
+in `.github/config.yml` (`mifConformanceLevel: 1|2|3`, default 2). Markdown stays
+canonical; a MIF JSON-LD object is derived from frontmatter + body and validated
+against per-level profiles. Run `npm run validate:mif`, or use the published Action
+with `mode: mif`. See the [MIF Compliance reference](https://smadr.dev/reference/mif-compliance/).
+
+### LLM-friendly documentation
+
+The docs site publishes [`llms.txt`](https://smadr.dev/llms.txt) (with
+`llms-full.txt` and `llms-small.txt`) following the
+[llms.txt convention](https://llmstxt.org/). These are generated at build time by
+the `starlight-llms-txt` plugin and are never hand-edited.
+
 ### GitHub Action
 
 Add automated validation to your CI/CD pipeline:
@@ -230,7 +250,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Validate Structured MADR
-        uses: zircote/structured-madr@v1
+        uses: modeled-information-format/structured-madr@v1
         with:
           path: docs/decisions    # Path to your ADRs (default: docs/decisions)
           pattern: '**/*.md'      # Glob pattern for ADR files (default: **/*.md)
@@ -264,7 +284,7 @@ Validate your ADRs locally using the CLI:
 
 ```bash
 # Clone and install
-git clone https://github.com/zircote/structured-madr.git
+git clone https://github.com/modeled-information-format/structured-madr.git
 cd structured-madr
 npm install
 
@@ -296,7 +316,7 @@ Structured MADR's frontmatter enables AI tools to:
 
 ### Plugins
 
-- **[ADR Plugin for Claude Code](https://github.com/zircote/marketplace/tree/main/plugins/adr)** - Full lifecycle management
+- **[ADR Plugin for Claude Code](https://github.com/modeled-information-format/marketplace/tree/main/plugins/adr)** - Full lifecycle management
 
 ## Resources
 
@@ -306,12 +326,30 @@ Structured MADR's frontmatter enables AI tools to:
 - [JSON Schema](schemas/structured-madr.schema.json) - Validation schema
 - [Contributing](CONTRIBUTING.md) - How to contribute
 
+## Citing This Project
+
+If you use Structured MADR in academic or published work, please cite it using the [CITATION.cff](CITATION.cff) file or GitHub's "Cite this repository" button.
+
+```bibtex
+@software{Allen_Structured_MADR,
+  author    = {Allen, Robert},
+  title     = {Structured MADR},
+  version   = {1.1.0},
+  url       = {https://github.com/modeled-information-format/structured-madr},
+  license   = {MIT}
+}
+```
+
 ## Acknowledgments
 
 Structured MADR builds upon the excellent work of:
 
-- [MADR](https://adr.github.io/madr/) - The foundation format
-- [Michael Nygard](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) - Original ADR concept
+- [MADR](https://adr.github.io/madr/) by Kopp, Armbruster, and Zimmermann - The foundation format and direct ancestor
+  > Kopp, O., Armbruster, A., & Zimmermann, O. (2018). Markdown Architectural Decision Records: Format and Tool Support. *ZEUS*.
+- [Michael Nygard](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) - Original ADR concept (2011)
+- [Y-Statements](https://medium.com/olzzio/y-statements-10eb07b5a177) by Olaf Zimmermann - Single-sentence decision capture format
+- [Tyree & Akerman](https://personal.utdallas.edu/~chung/SA/zz-Misc-from-Mail/09.02.02/Tyree05.pdf) - Comprehensive ADR format for enterprise governance
+  > Tyree, J. & Akerman, A. (2005). Architecture Decisions: Demystifying Architecture. *IEEE Software*, 22(2), 19-27.
 - [ADR GitHub Organization](https://github.com/adr) - ADR tooling ecosystem
 
 ## License

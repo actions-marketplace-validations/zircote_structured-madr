@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **[MIF Compliance]**: validate ADRs as MIF (Modeled Information Format) at a
+  user-selected level (`.github/config.yml` `mifConformanceLevel: 1|2|3`,
+  default 2). Markdown stays canonical; a MIF JSON-LD object is derived from
+  frontmatter + body and validated against per-level profiles.
+  - Self-contained Claude Code plugin homed at `.github/` (plugin root with
+    `.claude-plugin/plugin.json`, `commands/`, `agents/`, `skills/`, `hooks/`, plus
+    vendored + checksum-pinned MIF schemas, config, projector, validator, ADR-typing ontology).
+  - Installable: the repository is a plugin marketplace (`.claude-plugin/marketplace.json`,
+    `source: ./.github`); `.claude/settings.json` registers it and enables the plugin at
+    project scope, so `/plugin install structured-madr-mif@structured-madr` works.
+  - `npm run validate:mif`; composite action gains `mode: mif` for downstream consumers.
+  - CI gates: `mif-vendor-check` (schema drift) and dogfooded `validate-mif`.
+  - ADR-0003 records the decision and is itself MIF-conformant (dogfooded).
+
 ## [1.1.0] - 2026-01-15
 
 ### Added
@@ -51,6 +67,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Risk Assessment**: Three-dimension risk model (Technical/Schedule/Ecosystem) provides comprehensive evaluation
 - **Status Values**: Limited to MADR-compatible values (proposed, accepted, deprecated, superseded)
 
-[Unreleased]: https://github.com/zircote/structured-madr/compare/v1.1.0...HEAD
-[1.1.0]: https://github.com/zircote/structured-madr/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/zircote/structured-madr/releases/tag/v1.0.0
+[Unreleased]: https://github.com/modeled-information-format/structured-madr/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/modeled-information-format/structured-madr/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/modeled-information-format/structured-madr/releases/tag/v1.0.0

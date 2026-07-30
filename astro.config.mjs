@@ -1,11 +1,14 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import starlightLlmsTxt from "starlight-llms-txt";
 
 export default defineConfig({
   site: "https://smadr.dev",
   integrations: [
     starlight({
+      plugins: [starlightLlmsTxt()],
       title: "Structured MADR",
+      customCss: ["./src/styles/mif-brand.css"],
       logo: {
         light: "./src/assets/logo-light.svg",
         dark: "./src/assets/logo-dark.svg",
@@ -15,7 +18,7 @@ export default defineConfig({
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/zircote/structured-madr",
+          href: "https://github.com/modeled-information-format/structured-madr",
         },
       ],
       sidebar: [
@@ -71,6 +74,7 @@ export default defineConfig({
             },
             { label: "Schema", slug: "reference/schema" },
             { label: "GitHub Action", slug: "reference/github-action" },
+            { label: "MIF Compliance", slug: "reference/mif-compliance" },
             { label: "Templates", slug: "reference/templates" },
             { label: "Changelog", slug: "reference/changelog" },
           ],
@@ -90,6 +94,19 @@ export default defineConfig({
               label: "Design Decisions",
               slug: "explanation/design-decisions",
             },
+          ],
+        },
+        {
+          label: "MIF ecosystem",
+          items: [
+            { label: "MIF home", link: "https://modeled-information-format.github.io/" },
+            { label: "Ecosystem docs", link: "https://modeled-information-format.github.io/docs/" },
+            { label: "Research harness", link: "https://modeled-information-format.github.io/research-harness-template/" },
+            { label: "Ontology corpus", link: "https://modeled-information-format.github.io/ontologies/" },
+            { label: "mif-docs plugin", link: "https://modeled-information-format.github.io/mif-docs-plugin/" },
+            { label: "Plugin marketplace", link: "https://modeled-information-format.github.io/claude-code-plugins/" },
+            { label: "mif-rs", link: "https://modeled-information-format.github.io/mif-rs/" },
+            { label: "Specification (mif-spec.dev)", link: "https://mif-spec.dev/" },
           ],
         },
       ],
